@@ -19,7 +19,7 @@ html{
   display: flex;
   gap: 1rem;
   padding-block: 4rem;
-  padding-inline: 2rem;
+  padding-inline: 3rem;
 }
 .note{
   background-color: rgb(93, 93, 93);
@@ -27,4 +27,19 @@ html{
   border-radius: 0.7rem;
   max-width: 20rem;
   color: azure;
+}
+.note-create-form{
+  display: flex;
+  gap: 1rem;
+  padding-block: 3rem;
+  padding-inline: 4rem;
+  align-items: center;
+
+}
+.note-update-form{
+  display: flex;
+  gap: 1rem;
+  padding-block: 3rem;
+  padding-inline: 4rem;
+  align-items: center;
 }
