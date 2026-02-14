@@ -1,6 +1,7 @@
 
 const express=require("express")
 const app=express()
+const path=require("path")
 
 const noteModel=require("./model/note.model")
 
@@ -9,6 +10,7 @@ const cors=require("cors")
 
 app.use(express.json()) // midial where
 app.use(cors())
+app.use(express.static("./public"))
 
 app.post("/api/notes",async(req,res)=>{
     const {title,description}=req.body
@@ -53,4 +55,10 @@ app.patch("/api/notes/:id",async(req,res)=>{
     })
 })
 
+console.log(__dirname)
+
+app.use('*name',(req,res)=>{   // issme hame root se path dena hota hai res.send me or ye achha nhi hai for security purpush 
+    // to yaha par ham ek modul use karte hai path
+    res.send(path.join(__dirname,"..","/public/index.html"))   //jis bhi file ke under use karte hai us file ke under tak ka folder ka path batata hai
+})
 module.exports=app
