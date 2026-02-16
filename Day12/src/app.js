@@ -10,5 +10,8 @@ app.use(express.json()) // express.json router se pehle honga
 const authRouter=require("./routes/auth.routes")
 app.use("/api/auth",authRouter)
 
+const cookieParser=require("cookie-parser")  
+app.use(cookieParser())
+
 
 module.exports=app
