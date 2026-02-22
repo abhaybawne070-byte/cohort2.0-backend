@@ -5,6 +5,8 @@ const authRouter=express.Router()
 
 const jwt=require("jsonwebtoken")
 
+const crypto=require("crypto")
+
 authRouter.post("/register",async(req,res)=>{
   const {name,email,password}=req.body
   
@@ -15,8 +17,11 @@ authRouter.post("/register",async(req,res)=>{
       message:'user already existe with email address'
      })
   }
+
+  const hash = crypto.createHash("md5").update(password).digest("hex")
+
   const user=await userModel.create({
-    name , email , password
+    name , email , password:hash
   })
 
 const token=jwt.sign(   
@@ -57,7 +62,7 @@ authRouter.post("/login",async(req,res)=>{
     })
   }
 
-  const isPasswordMatched= user.password === password
+  const isPasswordMatched= user.password === crypto.createHash("md5").update(password).digest("hex")
 
   if(isPasswordMatched){
     return res.status(401).json({
