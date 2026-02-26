@@ -11,9 +11,13 @@ const userSchema = new mongoose.Schema({
         unique:[true,'user email already exist'],
         required:[true,"user email already required"]
     },
-    passward:{
+    password:{
         type:String,
-        require:[true,'user passward already required']
+        required:[true,'user password is required']
+    },
+    // Backward-compat for old documents/typos
+    password:{
+        type:String
     },
     bio: String ,
     profileImage:{
