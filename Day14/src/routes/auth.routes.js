@@ -86,7 +86,7 @@ authRouter.post("/login", async(req,res) =>{
         })
     }
 
-    const hash = crypto.createHash("sha256").update(password).digest("hex")
+    const hash = crypto.createHash("sha256").update(Password).digest("hex")
     
     const isPasswordValid = hash === user.password
 
