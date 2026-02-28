@@ -1,5 +1,5 @@
 const userModel = require("../model/user.model")
-const crypto = require("crypto")
+const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 async function registerController (req,res){
@@ -35,7 +35,7 @@ async function registerController (req,res){
         })
     }
 
-    const hash = crypto.createHash("sha256").update(password).digest("hex")
+     const hash = await bcrypt.hash(password,10 ) // solt = kitni bar hashing karna hai ye batata hai
 
     const user = await userModel.create({
         username,
@@ -45,7 +45,7 @@ async function registerController (req,res){
         password:hash
     }) 
     // user ka data ho
-    // dat unique ho
+    // data unique ho
     const token = jwt.sign({
         id: user._id
     },process.env.JWT_SECRET,
@@ -67,35 +67,24 @@ async function registerController (req,res){
 async function loginController(req,res){
     const {username,email,password} = req.body
 
-    const orConditions = [
-        username ? { username } : null,
-        email ? { email } : null,
-    ].filter(Boolean)
+    const user = await  userModel.findOne({
+         $or:[
+            {
+                username: username
+            },
+            {
+                email: email
+            }
+         ]
+    })
 
-    const user = await userModel.findOne(
-        orConditions.length ? { $or: orConditions } : {}
-    )
     if(!user){
         return res.status(404).json({
             message:"user not found"
         })
     }
 
-    if(!password){
-        return res.status(400).json({
-            message:"password is required"
-        })
-    }
-
-    const hash = crypto.createHash("sha256").update(password).digest("hex")
-    
-    const storedPasswordHash = user.password ?? user.passward
-    if(!storedPasswordHash){
-        return res.status(409).json({
-            message:"password not set for this user (re-register or reset password)"
-        })
-    }
-    const isPasswordValid = hash === storedPasswordHash
+     const isPasswordValid = await bcrypt.compare(password, user.password)
 
     if(!isPasswordValid){
         return res.status(401).json({
@@ -106,7 +95,7 @@ async function loginController(req,res){
     const token = jwt.sign(
         {id: user._id},
         process.env.JWT_SECRET,
-        {expiresIn:"2d"}
+        {expiresIn:"1d"}
     )
     res.cookie("token",token)
 
