@@ -8,8 +8,7 @@ const imagekit =new ImageKit({
 })
 
 async function createPostController(req,res){
-
-   
+    console.log(req.body, req.file)
 
     const file = await imagekit.files.upload({
          file: await toFile(Buffer.from(req.file.buffer),'file'),
@@ -30,8 +29,6 @@ async function createPostController(req,res){
 
 async function  getPostController(req,res){
 
-   
-
     const userId = req.user.id
 
     const posts = await postModel.find({
@@ -45,8 +42,6 @@ async function  getPostController(req,res){
 }
 
 async function getPostDetailsController(req,res){
-        
-  
 
     const userId = req.user.id
     const postId =req.params.postId
