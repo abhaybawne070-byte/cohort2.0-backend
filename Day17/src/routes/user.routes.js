@@ -16,7 +16,7 @@ userRouter.post("/follow/:username",identifyUser,userController.followUserContro
  * @description follow a user
  * @access private
  */
-userRouter.post("unfollow/:username",identifyUser,userController.followUserController)
+userRouter.post("/unfollow/:username",identifyUser,userController.unfollowUserController)
 
 
 module.exports = userRouter
