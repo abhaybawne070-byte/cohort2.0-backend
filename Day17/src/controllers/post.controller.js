@@ -91,6 +91,8 @@ async function likePostController(req,res){
     like
   })
 }
+
+
  module.exports ={
      createPostController,
      getPostController,
