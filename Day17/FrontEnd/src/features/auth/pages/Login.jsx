@@ -2,7 +2,7 @@ import React from 'react'
 import '../style/form.scss'
 import {Link} from 'react-router'
 
-const login = () => {
+const Login = () => {
   return (
     <main>
       <div className="form-container">
@@ -18,4 +18,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login
