@@ -113,7 +113,7 @@ async function loginController(req,res){
     })
 }
 
-async function getMeController(res,res){
+async function getMeController(req,res){
     const userId = req.user.id
 
     const user = await userModel.findById(userId)
@@ -131,5 +131,6 @@ async function getMeController(res,res){
 module.exports = {
     registerController,
     loginController,
+    getMeController
     
 }
