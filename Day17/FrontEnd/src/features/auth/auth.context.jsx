@@ -6,7 +6,7 @@ import {login , register , getMe} from "./services/auth.api"
 
 export const AuthContext = createContext()
 
-export function AuthProvider({ childern}){
+export function AuthProvider({ children}){
 
     const [user, setUser] = useState(null)
     const [loading , setLoading] = useState(false)
@@ -45,7 +45,7 @@ export function AuthProvider({ childern}){
 
     return (
         <AuthContext.Provider value={{user, loading , handleLogin ,handleRegister}}>
-               {childern}
+               {children}
         </AuthContext.Provider>
     )
 }
