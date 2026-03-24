@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {Link} from 'react-router'
 import axios from 'axios'
+import { useAuth } from '../hook/useAuth.js'
+import '../style/form.scss'
 
 const Register = () => {
   
@@ -8,10 +10,11 @@ const Register = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   
-   async function handleSubmit(e){
-    e.preventDefault()
+  const {register: registerUser} = useAuth()
 
-   
+  async function handleSubmit(e){
+    e.preventDefault()
+    registerUser(username, email, password)
   }
   return (
    <main>

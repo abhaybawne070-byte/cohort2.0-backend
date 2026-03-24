@@ -16,7 +16,9 @@ authRouter.post("/register",authController.registerController)
 authRouter.post("/login",authController.loginController)
 
 /**
- * @routes Get/api/auth/logout
+ * @routes Get/api/auth/get-me
+ * @desc get the currently logged in user's information
+ * @access private
  */
 authRouter.get("/get-me",identifyUser, authController.getMeController)
 

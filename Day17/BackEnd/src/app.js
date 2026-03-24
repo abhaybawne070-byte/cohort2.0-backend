@@ -2,10 +2,12 @@ const express = require("express")
 const app = express()
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
+const morgan = require("morgan")
 
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(morgan("dev"))
 app.use(cors({
     credentials:true,
     origin:"http://localhost:5173"
