@@ -4,6 +4,8 @@ import { Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
 
 const Login = () => {
+  
+  const {user , loading , handleLogin}=useAuth()
 
   const handleSubmit = (e) =>{
     e.preventDefault()
