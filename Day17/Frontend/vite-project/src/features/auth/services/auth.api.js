@@ -6,7 +6,7 @@ const api=axios.create({
     withCredentials:true,
 })
 
-export async function login(username , email){
+export async function login(username , password){
     const response = await api.post('/login',{
         username,password
     })
