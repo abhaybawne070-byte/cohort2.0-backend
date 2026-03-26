@@ -7,4 +7,12 @@ export const useAuth =() =>{
     const context = useContext(AuthContext)
 
     const {user, setUser , loading , setLoading} = context
+
+    const handleLogin = async (username, password)=>{
+
+        setLoading(true)
+
+        const response = await login(username, password)
+    }
+
 }
