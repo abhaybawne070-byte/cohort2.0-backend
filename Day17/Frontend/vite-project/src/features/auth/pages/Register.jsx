@@ -6,6 +6,8 @@ import { useAuth } from '../hooks/useAuth'
 
 const Register = () => {
 
+  const {loading , handleRegister} = useAuth()
+
   const handleSubmit=(e)=>{
     e.preventDefault()
 
