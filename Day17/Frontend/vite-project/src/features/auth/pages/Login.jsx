@@ -3,7 +3,7 @@ import { useState } from 'react'
 import "../style/form.scss"
 import { Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
-
+import { useNavigate } from 'react-router'
 
 const Login = () => {
   
