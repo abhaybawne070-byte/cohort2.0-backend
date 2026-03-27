@@ -19,7 +19,13 @@ const Login = () => {
 
     await handleLogin(username , password)
 
-    console.log("user loggedIn")
+    navigate('/')
+  }
+
+  if(loading){
+    return(<main>
+      Loading.......
+    </main>)
   }
 
   return (
