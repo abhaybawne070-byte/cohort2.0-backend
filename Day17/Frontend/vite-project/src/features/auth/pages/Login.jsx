@@ -1,17 +1,23 @@
 import React from 'react'
+import { useState } from 'react'
 import "../style/form.scss"
 import { Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
+
 
 const Login = () => {
   
   const {user , loading , handleLogin}=useAuth()
 
-  const [username , setUsername]= useState('')
+  const [username , setUsername]= useState("")
   const [password , setPassword] = useState("")
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async(e) =>{
     e.preventDefault()
+
+    await handleLogin(username , password)
+
+    console.log("user loggedIn")
   }
 
   return (
