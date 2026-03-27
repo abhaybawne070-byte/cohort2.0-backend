@@ -1,10 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { useAuth } from '../hooks/useAuth'
+
+
 
 const Register = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault()
+
+
   }
 
   return (
