@@ -14,7 +14,11 @@ const Register = () => {
     
   }
 
- 
+  if(loading){
+    return(<main><h>
+      Loading....
+      </h>1</main>)
+  }
 
   return (
      <main>
