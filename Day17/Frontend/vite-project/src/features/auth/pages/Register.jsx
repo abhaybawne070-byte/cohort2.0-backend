@@ -11,8 +11,10 @@ const Register = () => {
   const handleSubmit=(e)=>{
     e.preventDefault()
 
-
+    
   }
+
+ 
 
   return (
      <main>

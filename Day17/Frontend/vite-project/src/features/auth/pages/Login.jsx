@@ -23,9 +23,9 @@ const Login = () => {
   }
 
   if(loading){
-    return(<main>
-      Loading.......
-    </main>)
+    return(<main><h1>
+      loading....
+      </h1></main>)
   }
 
   return (
