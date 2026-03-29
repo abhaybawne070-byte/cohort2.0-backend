@@ -13,11 +13,9 @@ const userSchema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required:[true,'user password is required']
-    },
-    // Backward-compat for old documents/typos
-    password:{
-        type:String
+        required:[true,'user password is required'],
+        select:false
+        
     },
     status: {
         type: String,

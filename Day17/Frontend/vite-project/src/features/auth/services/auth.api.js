@@ -14,9 +14,9 @@ export async function login(username , password ){
     return response.data
 }
 
-export async function register(username ,eamil , password){
+export async function register(username ,email , password){
     const response = await api.post("/register",{
-        username , eamil ,password
+        username , email ,password
     })
 
     return response.data
