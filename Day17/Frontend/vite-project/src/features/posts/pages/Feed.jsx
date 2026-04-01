@@ -1,21 +1,37 @@
+import { useEffect } from 'react'
 import React from 'react'
+import "../style/feed.scss"
+import Post from "../components/Post"
+import { usePost } from '../hook/usePost'
+
+
 
 const Feed = () => {
-  return (
-     <main>
+
+    const {feed, handleGetFeed , loading} = usePost()
+
+    useEffect(() => {
+        handleGetFeed()
+    },[])
+
+    if(loading || !feed){
+        return(<main><h1>Feed is loading..</h1></main>)
+    }
+
+   
+    console.log(feed)
+
+    return (
+     <main className='feed-page'>
         <div className="feed">
             <div className="posts">
-                <div className="user">
-                    <img src="https://images.unsplash.com/photo-1724710151888-d9f0607f344a?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
-                    <p>Username</p>
-                </div>
-                <img src="https://images.unsplash.com/photo-1773414001281-7e1cadd04a79?q=80&w=751&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"  />
-                <div className="botton">
-                    <p className='caption'>caption</p>
-                </div>
+                {feed.map(post=>{
+                    return <Post user={post.user} post={post} />
+                })}
             </div>
         </div>
      </main>
+
   )
 }
 
